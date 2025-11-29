@@ -54,7 +54,11 @@ def main(args):
     elif args.model == "gemma-2-2b-it":
         engine_args = EngineArgs(model="google/gemma-2-2b-it", enable_prefix_caching=True)
     elif args.model == "gemma-2-9b-it":
-        engine_args = EngineArgs(model="google/gemma-2-9b-it", enable_prefix_caching=True)
+        engine_args = EngineArgs(model="google/gemma-2-9b-it", enable_prefix_caching=True, tensor_parallel_size=3, gpu_memory_utilization=0.85)
+    elif args.model == "gemma-3-12b-it":
+        engine_args = EngineArgs(model="google/gemma-3-12b-it", enable_prefix_caching=True, tensor_parallel_size=3, gpu_memory_utilization=0.85)
+    elif args.model == "gemma-3-27b-it":
+        engine_args = EngineArgs(model="google/gemma-3-27b-it", enable_prefix_caching=True, tensor_parallel_size=2, gpu_memory_utilization=0.85)
     elif args.model == "Mistral-7B-Instruct":
         engine_args = EngineArgs(model="mistralai/Mistral-7B-Instruct-v0.3", enable_prefix_caching=True, tokenizer_mode="mistral")
     elif args.model == "llama2-7b-chat-hf":
@@ -67,6 +71,18 @@ def main(args):
         engine_args = EngineArgs(model="google/gemma-3-4b-it", enable_prefix_caching=True)
     elif args.model == "gemma-3-270m-it":
         engine_args = EngineArgs(model="google/gemma-3-270m-it", enable_prefix_caching=True)
+    elif args.model == "allenai/Olmo-3-7B-Instruct":
+        engine_args = EngineArgs(model="allenai/Olmo-3-7B-Instruct", enable_prefix_caching=True, tensor_parallel_size=3, gpu_memory_utilization=0.85)
+    elif args.model == "Qwen/Qwen2.5-1.5B-Instruct":
+        engine_args = EngineArgs(model="Qwen/Qwen2.5-1.5B-Instruct", enable_prefix_caching=True)
+    elif args.model == "Qwen/Qwen2.5-3B-Instruct":
+        engine_args = EngineArgs(model="Qwen/Qwen2.5-3B-Instruct", enable_prefix_caching=True)
+    elif args.model == "allenai/Olmo-3-7B-Think":
+        engine_args = EngineArgs(model="allenai/Olmo-3-7B-Think", enable_prefix_caching=True, tensor_parallel_size=3, gpu_memory_utilization=0.85)
+    elif args.model == "lumees/Lumees-3.8B-Reasoning":
+        engine_args = EngineArgs(model="lumees/Lumees-3.8B-Reasoning", enable_prefix_caching=True)
+    elif args.model == "openai-community/gpt2-large":
+        engine_args = EngineArgs(model="openai-community/gpt2-large", enable_prefix_caching=True)
 
     sampling_params = SamplingParams(temperature=0.0, seed=42)
         
@@ -140,12 +156,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="A simple argparse example.")
 
     # Add arguments
-    parser.add_argument("--model", type=str, choices=["llama3-8b", "llama3-70b",
-                                                    "gemma3-270m", "llama2-7b-chat-hf",
-                                                      "llama2-13b-chat-hf", "gemma-2-2b-it",
-                                                      "gemma-2-9b-it", "Mistral-7B-Instruct",
-                                                      "gemma-3-1b-it", "gemma-3-4b-it",
-                                                      "gemma-3-270m-it"], required=True)
+    parser.add_argument("--model", type=str, required=True)
     parser.add_argument("--reordered", action="store_true")
 
     # Parse the arguments
