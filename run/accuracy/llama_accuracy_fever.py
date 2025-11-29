@@ -58,7 +58,7 @@ def main(args):
     elif args.model == "gemma-3-12b-it":
         engine_args = EngineArgs(model="google/gemma-3-12b-it", enable_prefix_caching=True, tensor_parallel_size=3, gpu_memory_utilization=0.85)
     elif args.model == "gemma-3-27b-it":
-        engine_args = EngineArgs(model="google/gemma-3-27b-it", enable_prefix_caching=True, tensor_parallel_size=2, gpu_memory_utilization=0.85)
+        engine_args = EngineArgs(model="google/gemma-3-27b-it", enable_prefix_caching=True, tensor_parallel_size=3, gpu_memory_utilization=0.85)
     elif args.model == "Mistral-7B-Instruct":
         engine_args = EngineArgs(model="mistralai/Mistral-7B-Instruct-v0.3", enable_prefix_caching=True, tokenizer_mode="mistral")
     elif args.model == "llama2-7b-chat-hf":
