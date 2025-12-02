@@ -3,11 +3,11 @@
 #SBATCH --job-name=accuracy
 #SBATCH -N 1 ## number of nodes
 #SBATCH -n 1 ## number of tasks
-#SBATCH -p gpu-a100-small # Queue (partition) name
+#SBATCH -p gpu-a100 # Queue (partition) name
 #SBATCH -o ./slurm_logs/%x.o%j       # Name of stdout output file, %x for job name, %j for job id
 #SBATCH -e ./slurm_logs/%x.e%j       # Name of stderr error file
-#SBATCH -t 05:00:00
-#SBATCH -A IFML
+#SBATCH -t 10:00:00
+#SBATCH -A IRI24030
 #SBATCH --mail-type=all
 #SBATCH --mail-user=trungnguyen@utexas.edu
 
@@ -73,8 +73,23 @@ cd run/accuracy
 
 # python llama_accuracy_fever.py --model Mistral-7B-Instruct
 
-python llama_accuracy_fever.py --model gemma-3-1b-it
+# python llama_accuracy_fever.py --model gemma-3-1b-it
 
-python llama_accuracy_fever.py --model gemma-3-4b-it
+# python llama_accuracy_fever.py --model gemma-3-4b-it
 
-python llama_accuracy_fever.py --model gemma-3-270m-it
+# python llama_accuracy_fever.py --model gemma-3-270m-it
+
+python llama_accuracy_fever.py --model gemma-2-9b-it
+
+python llama_accuracy_fever.py --model gemma-3-12b-it
+
+python llama_accuracy_fever.py --model allenai/Olmo-3-7B-Instruct
+
+python llama_accuracy_fever.py --model Qwen/Qwen2.5-1.5B-Instruct
+
+python llama_accuracy_fever.py --model Qwen/Qwen2.5-3B-Instruct
+
+python llama_accuracy_fever.py --model allenai/Olmo-3-7B-Think
+
+python llama_accuracy_fever.py --model lumees/Lumees-3.8B-Reasoning
+
